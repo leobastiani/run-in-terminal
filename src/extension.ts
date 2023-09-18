@@ -116,6 +116,9 @@ class Cmd {
     var column = this.editor.selection.active.character + 1;
 
     command = command.replace(/\${line}/g, `${line}`);
+    command = command.replace(/\${lineContent}/g, `${this.editor.document.lineAt(
+      this.editor.selection.active.line
+    ).text.trim()}`);
     command = command.replace(/\${column}/g, `${column}`);
     command = command.replace(/\${relativeFile}/g, relativeFile);
     command = command.replace(/\${file}/g, `${this.editor.document.fileName}`);
